@@ -64,7 +64,7 @@
 <meta property="og:site_name" content="杭州师范大学大数据实验室">
 <meta property="og:description" content="[TOC] 1、假设检验假设检验是推论统计中用于检验统计假设的一种方法。而“统计假设”是可通过观察一组随机变量的模型进行检验的科学假说。[1]一旦能估计未知参数，就会希望根据结果对未知的真正参数值做出适当的推论。 统计上对参数的假设，就是对一个或多个参数的论述。而其中欲检验其正确性的为零假设（null hypothesis），零假设通常由研究者决定，反映研究者对未知参数的看法。相对于零假设的其他有">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-09T10:02:43.452Z">
+<meta property="og:updated_time" content="2019-10-09T10:11:48.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="scenceone">
 <meta name="twitter:description" content="[TOC] 1、假设检验假设检验是推论统计中用于检验统计假设的一种方法。而“统计假设”是可通过观察一组随机变量的模型进行检验的科学假说。[1]一旦能估计未知参数，就会希望根据结果对未知的真正参数值做出适当的推论。 统计上对参数的假设，就是对一个或多个参数的论述。而其中欲检验其正确性的为零假设（null hypothesis），零假设通常由研究者决定，反映研究者对未知参数的看法。相对于零假设的其他有">
@@ -275,7 +275,7 @@
                 
               
 
-              <time title="Created: 2019-10-09 18:02:21 / Modified: 18:02:43" itemprop="dateCreated datePublished" datetime="2019-10-09T18:02:21+08:00">2019-10-09</time>
+              <time title="Created: 2019-10-09 18:02:21 / Modified: 18:11:48" itemprop="dateCreated datePublished" datetime="2019-10-09T18:02:21+08:00">2019-10-09</time>
             </span>
           
             
@@ -662,6 +662,58 @@ window.addEventListener('pjax:success', () => {
 
   
 
+  
+    
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
   
 
   
