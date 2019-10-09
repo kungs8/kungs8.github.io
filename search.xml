@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[scenceone]]></title>
+    <url>%2F2019%2F10%2F09%2Fscenceone%2F</url>
+    <content type="text"><![CDATA[[TOC] 1、假设检验假设检验是推论统计中用于检验统计假设的一种方法。而“统计假设”是可通过观察一组随机变量的模型进行检验的科学假说。[1]一旦能估计未知参数，就会希望根据结果对未知的真正参数值做出适当的推论。 统计上对参数的假设，就是对一个或多个参数的论述。而其中欲检验其正确性的为零假设（null hypothesis），零假设通常由研究者决定，反映研究者对未知参数的看法。相对于零假设的其他有关参数之论述是备择假设（alternative hypothesis），它通常反映了执行检定的研究者对参数可能数值的另一种（对立的）看法（换句话说，备择假设通常才是研究者最想知道的）。 假设检验的种类包括：t检验，Z检验，卡方检验，F检验等等。 1.1 基本思想​ 假设检验的基本思想是小概率反证法思想。小概率思想是指小概率事件（P]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[hello-kungs]]></title>
     <url>%2F2019%2F10%2F09%2Fhello-kungs%2F</url>
     <content type="text"><![CDATA[深度学习深度学习 神经网络神经网络]]></content>
