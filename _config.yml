@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-keywords:
-author: John Doe
+title: Kungs大数据实验室
+subtitle: 一个专注于科研前线的大数据团队，致力于打造更好更牛的大数据平台
+description: 涉猎的主要编程语言为 Python、Java、Rust、C++、Go，领域涵盖爬虫、深度学习、服务研发和对象存储等。
+keywords: "Python, Java, Rust, C++, Go, 爬虫, 深度学习, 服务研发, 对象存储"
+author: yanpenggong
 language: en
-timezone:
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -81,3 +81,9 @@ deploy:
   type: git
   repo: https://github.com/kungs8/kungs8.github.io.git
   branch: master
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
