@@ -1,5 +1,5 @@
 ---
-title: learn_spark
+title: learnspark
 date: 2019-10-22 21:39:41
 tags:spark
 ---
