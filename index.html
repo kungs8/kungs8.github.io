@@ -192,6 +192,183 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/20/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/cat.jpg">
+      <meta itemprop="name" content="yanpenggong">
+      <meta itemprop="description" content="涉猎的主要编程语言为 Python、C++、Matlab、R，领域涵盖爬虫、数据挖掘、深度学习、良率分析、目标检测、工业异常检测、服务研发和对象存储等。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yanpenggong 大数据实验室">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/20/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/" class="post-title-link" itemprop="url">使用Github搭建图床</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-20 17:13:48 / 修改时间：17:15:14" itemprop="dateCreated datePublished" datetime="2022-04-20T17:13:48+08:00">2022-04-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BA%8A/" itemprop="url" rel="index"><span itemprop="name">图床</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <div align="center">
+  <font size='60'>使用Github搭建图床</font><br>
+  <font size='3'>
+    <B>Author: </B><a target="_blank" rel="noopener" href="https://blog.csdn.net/yanpenggong">yanpenggong</a>&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;
+    <B>Email: </B><a href="yanpenggong@163.com">yanpenggong@163.com</a><br>
+    <B>Github: </B><a target="_blank" rel="noopener" href="https://github.com/kungs8">kungs8</a>
+    &#x3000;&#x3000;&#x3000;&#x3000;
+    <B>CSDN: </B><a target="_blank" rel="noopener" href="https://blog.csdn.net/yanpenggong">https://blog.csdn.net/yanpenggong</a>
+  </font>
+</div>
+
+<p>[TOC]</p>
+<h1 id="一、图床简介"><a href="#一、图床简介" class="headerlink" title="一、图床简介"></a>一、图床简介</h1><p>程序员应该都了解 Typora 是专注于编写 Markdown 格式的编辑软件，使用方便，支持多种格式导出。</p>
+<p>PicGo 是一款免费的图床管理应用，支持拖拽上传，剪切板上传等方式。你可以用它快捷地将图片上传到图床并获得网络链接。</p>
+<p>注意：请不要把 PicGo 安装到 C 盘 Program Files 下</p>
+<h2 id="1-什么是图床"><a href="#1-什么是图床" class="headerlink" title="1. 什么是图床"></a>1. 什么是图床</h2><p>对于写博客的朋友们来讲，图床这个东西一定不会陌生，而且在一定程度上也给大家造成过一定困扰。</p>
+<p>对于不清楚这个东西的朋友，我就在这儿大概说一下图床是个啥东西。所谓图床，其实可以就相当于我们手机上的相册，不过他是在线的，而且是对大家开放的，大家都可以访问查看，但是编辑删除这些功能仅限于拥有者，就相当于用百度云分享的公开照片，你可以查看，也可以下载下来编辑，但是拥有权还是属于分享者。</p>
+<p>那你可能会疑惑，那这个东西和写博客的我们有啥关系呢？</p>
+<p>你想想，我们写博客，是不是有很多图片需要插入，我们这些博客要保留在本地的时候你可以预览到图片，但一旦你要把它发布到网上，这时候问题来了！发现图片上传失败，那是因为你本地的图片都是存在本地的，平台不会自动给你上传，那这个时候就凸显出图床的重要性了。当然了，如果你是直接在平台进行编辑，那着一点就不用担心了，基本平台都会自动给你上传到它自己的服务器。<br>有了图床，我们在本地写好博客之后，就能够任意复制到其他平台，不用担心图片丢失问题了。</p>
+<p>今天的文章就是给大家分享一个搭建免费图床的教程，既是方便自己后续的复习，也希望对大家也有所帮助。</p>
+<h2 id="2-个人需要搭建自己图床的需求"><a href="#2-个人需要搭建自己图床的需求" class="headerlink" title="2. 个人需要搭建自己图床的需求"></a>2. 个人需要搭建自己图床的需求</h2><p>Markdown 可以理解为增强版的文本文档，语法简单，支持更多的风格样式，相比 word 更加轻便，文件大小更小，同时可导出为指定格式，目前大多是技术博客论坛已支持 Markdown 格式，基本上可以做到一次编写多处使用。当然 Markdown 也存在缺点，比如图片。</p>
+<p>Markdown 文档编写时可使用本地图片，但是无法在网络上使用。图床的作用可以理解为将文档中的图片放到网络上，直接引用网络地址，这样可以做到无论在那个平台都可以使用统一的图片地址。</p>
+<h2 id="3-个人搭建的图床必须具备的特性"><a href="#3-个人搭建的图床必须具备的特性" class="headerlink" title="3. 个人搭建的图床必须具备的特性"></a>3. 个人搭建的图床必须具备的特性</h2><p>存储的图片数据必须要安全存储；</p>
+<p>访问速度要快；</p>
+<p>尽可能是免费的，如果是收费，希望便宜些；</p>
+<p>可以批量导出图片数据等……</p>
+<h2 id="4-PicGo可以使用的图床"><a href="#4-PicGo可以使用的图床" class="headerlink" title="4. PicGo可以使用的图床"></a>4. PicGo可以使用的图床</h2><p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_01.png" style="zoom:50%;" /></p>
+<p>感觉比较靠谱的图床：</p>
+<p>阿里云OSS、腾讯云COS、七牛图床、Github图床……</p>
+<h2 id="5-github作为图床的优点"><a href="#5-github作为图床的优点" class="headerlink" title="5. github作为图床的优点"></a>5. github作为图床的优点</h2><ul>
+<li><p>每一个 IT 人都会具备一个github账号，因此用其做为自己的图床很好。</p>
+</li>
+<li><p>虽然github打开会比较慢，但是用了cdn加速后，效果是非常ok的，高级。</p>
+</li>
+<li><p>使用gitbub作为图床可以进一步熟悉 github 和 git。</p>
+</li>
+</ul>
+<h1 id="二、准备工作"><a href="#二、准备工作" class="headerlink" title="二、准备工作"></a>二、准备工作</h1><p>一个 Github 账号</p>
+<h1 id="三、搭建过程"><a href="#三、搭建过程" class="headerlink" title="三、搭建过程"></a>三、搭建过程</h1><h2 id="1-登录github并创建仓库"><a href="#1-登录github并创建仓库" class="headerlink" title="1. 登录github并创建仓库"></a>1. 登录github并创建仓库</h2><p>登录自己的 Github并创建一个新的仓库：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_02.png" style="zoom:50%;" /></p>
+<h2 id="2-填写仓库信息"><a href="#2-填写仓库信息" class="headerlink" title="2. 填写仓库信息"></a>2. 填写仓库信息</h2><p>填写仓库相关信息，一般只需要选一个合适的仓库名，然后确保仓库为 <code>public</code> 其他的保持默认就好；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_03.png" style="zoom:50%;" /></p>
+<p>自己本次填写信息：<code>blog_imgs</code></p>
+<h2 id="3-查看创建好的仓库"><a href="#3-查看创建好的仓库" class="headerlink" title="3. 查看创建好的仓库"></a>3. 查看创建好的仓库</h2><p>一般创建成功之后，会出现如下界面，至此，我们的图床算是创建好了，接下来就是如何上传图片了；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_04.png" style="zoom:50%;" /></p>
+<h2 id="4-上传图片-配置-PicGo"><a href="#4-上传图片-配置-PicGo" class="headerlink" title="4. 上传图片(配置 PicGo )"></a>4. 上传图片(配置 PicGo )</h2><p>通过上面的步骤，我们的图床时搭建好了，但是通过传统的方法向 Github 上传图片太麻烦了，这里我们推荐使用一个开源图床工具 <a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fmolunerfinn.com%2FPicGo%2F">PicGo</a> 来作为我们的图片上传工具；</p>
+<p>PicGo 的安装就不说了，去 <a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fmolunerfinn.com%2FPicGo%2F">官网</a> 下载对应版本进行安装即可，我们主要讲讲如何用它来上传图片。安装后，打开软件其主页面如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_05.png" style="zoom:50%;" /></p>
+<p>接下来就是配置 PicGo 的过程了。</p>
+<ol>
+<li><p><strong>先要去 Github 创建一个 token</strong></p>
+<p>依次打开 <code>Settings -&gt; Developer settings -&gt; Personal access tokens</code>，最后点击 <code>generate new token</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_41.png" style="zoom:50%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_42.png" style="zoom:50%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_43.png" style="zoom:50%;" /></p>
+</li>
+<li><p><strong>填写及勾选相关信息，然后点击 <code>Genetate token</code> 即可</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_44.png" style="zoom:50%;" /></p>
+<p>==这里注意下：==</p>
+<p>默认这个token有效期为30天，我们为了稳定性起见，可以直接改为<code>no expiration</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_45.png" style="zoom:50%;" /></p>
+</li>
+<li><p><strong><code>token</code> 生成</strong></p>
+<p>注意它只会显示一次，所以你最好把它复制下来到你的备忘录存好，方便下次使用，否则下次有需要重新新建</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_46.png" style="zoom:50%;" /></p>
+</li>
+<li><p><strong>配置 PicGo，依次打开 图床设置 -&gt; Github 图床</strong></p>
+<p>填写相关信息，最后点击 <code>确定</code>即可，要将其作为默认图床的话，点击设为默认图床；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_47.png" style="zoom:50%;" /></p>
+</li>
+<li><p><strong>上传图片</strong></p>
+<p>通过上传区上传即可（Ctrl V 或者将图片拖拽都可以），也可以通过快捷键的方式上传（默认上传键为 <code>Ctrl + Shift + P</code>）</p>
+<p>首先这里我没有打开科学上网，观察下图片上传速度和在线查看md文件时图片的显示速度；</p>
+<p>这里通过typora里配置了picgo，进行测试下效果：</p>
+<p>查看typora配置的参数：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_48.png" style="zoom:50%;" /></p>
+<p>点击严重突破上传选项，可以测试是否上传成功。</p>
+<p>直接在 Typora 中粘贴图片后，再右击进行上传图片。上传完成，我们发现图像的路径变成 url 链接了。</p>
+</li>
+</ol>
+<h2 id="5-加速访问"><a href="#5-加速访问" class="headerlink" title="5. 加速访问"></a>5. 加速访问</h2><p>大家可能会发现，我们上传到 Github 的图片有时候访问太慢了，有时候甚至直接加载不出来！那该咋办呢？<br>这时候我们就可以用 jsDelivr 进行免费加速，而设置的方法也很简单，只需要在我们 PicGo 图床配置中添加如下自定义域名即可；<br><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/用户名/仓库名">https://cdn.jsdelivr.net/gh/用户名/仓库名</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.jsdelivr.com/?docs=gh</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_49.png" style="zoom:50%;" /></p>
+<p><strong>比如我的就是: <code>https://cdn.jsdelivr.net/gh/kungs8/blog_imgs</code></strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_50.png" style="zoom:50%;" /></p>
+<p>现在我们再次测试下效果：</p>
+<p>测试粘贴到typora里图片的上传速度、打开md文档时图片的显示速度：</p>
+<p>此时本地 无科学上网：</p>
+<p>=测试：上传 可能会耗时3-4s，但在其他终端打开md文档，里面图片的展示时间几乎是0ms，效果很不错；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_51.png" style="zoom:50%;" /></p>
+<h2 id="6-图床推荐"><a href="#6-图床推荐" class="headerlink" title="6. 图床推荐"></a>6. 图床推荐</h2><p>除开用 Github 搭建的方式之后，我们也可以用 Gitee 进行搭建，搭建方式和本文大致相同。此外，我也推荐几个免费的图床给大家，大家可以根据自己的喜好进行选择；</p>
+<ul>
+<li><p><a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fimgchr.com%2F">路过图床</a></p>
+</li>
+<li><p><a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fsm.ms%2F">SM.MS</a></p>
+</li>
+<li><p><a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fimgur.com%2F">Imgur</a></p>
+</li>
+</ul>
+<h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 准备一个 Github 账号；</span><br><span class="line">2. 搭建图床仓库；</span><br><span class="line">3. 上传图片设置；</span><br><span class="line">4. 加速访问；</span><br><span class="line">5. 免费图床推荐；</span><br></pre></td></tr></table></figure>
+<h1 id="五、注意事项"><a href="#五、注意事项" class="headerlink" title="五、注意事项"></a>五、注意事项</h1><ol>
+<li><p><strong>禁止上传私密信息</strong></p>
+<p>使用github作为自己的云笔记图床时，切记图片上不能包含一些隐私信息：例如密码等信息；</p>
+</li>
+<li><p><strong>上传同名文件时会报错</strong></p>
+</li>
+<li><p><strong>即使后期gitbub倒闭或者cdn加速失效时，也可以批量把文件给下载下来</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/kungs8/blog_imgs.git</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/20/%E8%87%AA%E6%88%91%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -722,16 +899,16 @@ t = \frac{\bar{x}-\mu_{0}}{\frac{S}{\sqrt{n}}}\\
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="使用Github搭建图床        Author: yanpenggong&amp;#x3000;&amp;#x3000;&amp;#x3000;&amp;#x3000;&amp;#x3000;&amp;#x3000;     Email: yanpenggong@163.com     Github: kungs8     &amp;#x3000;&amp;#x3000;&amp;#x3000;&amp;#x3000;     CSDN: https:&#x2F;&#x2F;blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Github搭建图床">
+<meta property="og:url" content="http://example.com/2022/04/20/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/index.html">
+<meta property="og:site_name" content="yanpenggong 大数据实验室">
+<meta property="og:description" content="使用Github搭建图床        Author: yanpenggong&amp;#x3000;&amp;#x3000;&amp;#x3000;&amp;#x3000;&amp;#x3000;&amp;#x3000;     Email: yanpenggong@163.com     Github: kungs8     &amp;#x3000;&amp;#x3000;&amp;#x3000;&amp;#x3000;     CSDN: https:&#x2F;&#x2F;blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_01.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_02.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_03.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_04.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_05.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_41.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_42.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_43.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_44.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_45.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_46.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_47.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_48.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_49.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_50.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_51.png">
+<meta property="article:published_time" content="2022-04-20T09:13:48.000Z">
+<meta property="article:modified_time" content="2022-04-20T09:15:14.000Z">
+<meta property="article:author" content="yanpenggong">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="图床">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_01.png">
+
+<link rel="canonical" href="http://example.com/2022/04/20/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>使用Github搭建图床 | yanpenggong 大数据实验室</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="yanpenggong 大数据实验室" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">yanpenggong 大数据实验室</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个专注于科研前线的大数据团队，致力于打造更好更牛的大数据平台</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/kungs8/kungs8.github.io" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/20/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/cat.jpg">
+      <meta itemprop="name" content="yanpenggong">
+      <meta itemprop="description" content="涉猎的主要编程语言为 Python、C++、Matlab、R，领域涵盖爬虫、数据挖掘、深度学习、良率分析、目标检测、工业异常检测、服务研发和对象存储等。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yanpenggong 大数据实验室">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用Github搭建图床
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-04-20 17:13:48 / 修改时间：17:15:14" itemprop="dateCreated datePublished" datetime="2022-04-20T17:13:48+08:00">2022-04-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%9B%BE%E5%BA%8A/" itemprop="url" rel="index"><span itemprop="name">图床</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div align="center">
+  <font size='60'>使用Github搭建图床</font><br>
+  <font size='3'>
+    <B>Author: </B><a target="_blank" rel="noopener" href="https://blog.csdn.net/yanpenggong">yanpenggong</a>&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;
+    <B>Email: </B><a href="yanpenggong@163.com">yanpenggong@163.com</a><br>
+    <B>Github: </B><a target="_blank" rel="noopener" href="https://github.com/kungs8">kungs8</a>
+    &#x3000;&#x3000;&#x3000;&#x3000;
+    <B>CSDN: </B><a target="_blank" rel="noopener" href="https://blog.csdn.net/yanpenggong">https://blog.csdn.net/yanpenggong</a>
+  </font>
+</div>
+
+<p>[TOC]</p>
+<h1 id="一、图床简介"><a href="#一、图床简介" class="headerlink" title="一、图床简介"></a>一、图床简介</h1><p>程序员应该都了解 Typora 是专注于编写 Markdown 格式的编辑软件，使用方便，支持多种格式导出。</p>
+<p>PicGo 是一款免费的图床管理应用，支持拖拽上传，剪切板上传等方式。你可以用它快捷地将图片上传到图床并获得网络链接。</p>
+<p>注意：请不要把 PicGo 安装到 C 盘 Program Files 下</p>
+<h2 id="1-什么是图床"><a href="#1-什么是图床" class="headerlink" title="1. 什么是图床"></a>1. 什么是图床</h2><p>对于写博客的朋友们来讲，图床这个东西一定不会陌生，而且在一定程度上也给大家造成过一定困扰。</p>
+<p>对于不清楚这个东西的朋友，我就在这儿大概说一下图床是个啥东西。所谓图床，其实可以就相当于我们手机上的相册，不过他是在线的，而且是对大家开放的，大家都可以访问查看，但是编辑删除这些功能仅限于拥有者，就相当于用百度云分享的公开照片，你可以查看，也可以下载下来编辑，但是拥有权还是属于分享者。</p>
+<p>那你可能会疑惑，那这个东西和写博客的我们有啥关系呢？</p>
+<p>你想想，我们写博客，是不是有很多图片需要插入，我们这些博客要保留在本地的时候你可以预览到图片，但一旦你要把它发布到网上，这时候问题来了！发现图片上传失败，那是因为你本地的图片都是存在本地的，平台不会自动给你上传，那这个时候就凸显出图床的重要性了。当然了，如果你是直接在平台进行编辑，那着一点就不用担心了，基本平台都会自动给你上传到它自己的服务器。<br>有了图床，我们在本地写好博客之后，就能够任意复制到其他平台，不用担心图片丢失问题了。</p>
+<p>今天的文章就是给大家分享一个搭建免费图床的教程，既是方便自己后续的复习，也希望对大家也有所帮助。</p>
+<h2 id="2-个人需要搭建自己图床的需求"><a href="#2-个人需要搭建自己图床的需求" class="headerlink" title="2. 个人需要搭建自己图床的需求"></a>2. 个人需要搭建自己图床的需求</h2><p>Markdown 可以理解为增强版的文本文档，语法简单，支持更多的风格样式，相比 word 更加轻便，文件大小更小，同时可导出为指定格式，目前大多是技术博客论坛已支持 Markdown 格式，基本上可以做到一次编写多处使用。当然 Markdown 也存在缺点，比如图片。</p>
+<p>Markdown 文档编写时可使用本地图片，但是无法在网络上使用。图床的作用可以理解为将文档中的图片放到网络上，直接引用网络地址，这样可以做到无论在那个平台都可以使用统一的图片地址。</p>
+<h2 id="3-个人搭建的图床必须具备的特性"><a href="#3-个人搭建的图床必须具备的特性" class="headerlink" title="3. 个人搭建的图床必须具备的特性"></a>3. 个人搭建的图床必须具备的特性</h2><p>存储的图片数据必须要安全存储；</p>
+<p>访问速度要快；</p>
+<p>尽可能是免费的，如果是收费，希望便宜些；</p>
+<p>可以批量导出图片数据等……</p>
+<h2 id="4-PicGo可以使用的图床"><a href="#4-PicGo可以使用的图床" class="headerlink" title="4. PicGo可以使用的图床"></a>4. PicGo可以使用的图床</h2><p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_01.png" style="zoom:50%;" /></p>
+<p>感觉比较靠谱的图床：</p>
+<p>阿里云OSS、腾讯云COS、七牛图床、Github图床……</p>
+<h2 id="5-github作为图床的优点"><a href="#5-github作为图床的优点" class="headerlink" title="5. github作为图床的优点"></a>5. github作为图床的优点</h2><ul>
+<li><p>每一个 IT 人都会具备一个github账号，因此用其做为自己的图床很好。</p>
+</li>
+<li><p>虽然github打开会比较慢，但是用了cdn加速后，效果是非常ok的，高级。</p>
+</li>
+<li><p>使用gitbub作为图床可以进一步熟悉 github 和 git。</p>
+</li>
+</ul>
+<h1 id="二、准备工作"><a href="#二、准备工作" class="headerlink" title="二、准备工作"></a>二、准备工作</h1><p>一个 Github 账号</p>
+<h1 id="三、搭建过程"><a href="#三、搭建过程" class="headerlink" title="三、搭建过程"></a>三、搭建过程</h1><h2 id="1-登录github并创建仓库"><a href="#1-登录github并创建仓库" class="headerlink" title="1. 登录github并创建仓库"></a>1. 登录github并创建仓库</h2><p>登录自己的 Github并创建一个新的仓库：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_02.png" style="zoom:50%;" /></p>
+<h2 id="2-填写仓库信息"><a href="#2-填写仓库信息" class="headerlink" title="2. 填写仓库信息"></a>2. 填写仓库信息</h2><p>填写仓库相关信息，一般只需要选一个合适的仓库名，然后确保仓库为 <code>public</code> 其他的保持默认就好；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_03.png" style="zoom:50%;" /></p>
+<p>自己本次填写信息：<code>blog_imgs</code></p>
+<h2 id="3-查看创建好的仓库"><a href="#3-查看创建好的仓库" class="headerlink" title="3. 查看创建好的仓库"></a>3. 查看创建好的仓库</h2><p>一般创建成功之后，会出现如下界面，至此，我们的图床算是创建好了，接下来就是如何上传图片了；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_04.png" style="zoom:50%;" /></p>
+<h2 id="4-上传图片-配置-PicGo"><a href="#4-上传图片-配置-PicGo" class="headerlink" title="4. 上传图片(配置 PicGo )"></a>4. 上传图片(配置 PicGo )</h2><p>通过上面的步骤，我们的图床时搭建好了，但是通过传统的方法向 Github 上传图片太麻烦了，这里我们推荐使用一个开源图床工具 <a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fmolunerfinn.com%2FPicGo%2F">PicGo</a> 来作为我们的图片上传工具；</p>
+<p>PicGo 的安装就不说了，去 <a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fmolunerfinn.com%2FPicGo%2F">官网</a> 下载对应版本进行安装即可，我们主要讲讲如何用它来上传图片。安装后，打开软件其主页面如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_05.png" style="zoom:50%;" /></p>
+<p>接下来就是配置 PicGo 的过程了。</p>
+<ol>
+<li><p><strong>先要去 Github 创建一个 token</strong></p>
+<p>依次打开 <code>Settings -&gt; Developer settings -&gt; Personal access tokens</code>，最后点击 <code>generate new token</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_41.png" style="zoom:50%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_42.png" style="zoom:50%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_43.png" style="zoom:50%;" /></p>
+</li>
+<li><p><strong>填写及勾选相关信息，然后点击 <code>Genetate token</code> 即可</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_44.png" style="zoom:50%;" /></p>
+<p>==这里注意下：==</p>
+<p>默认这个token有效期为30天，我们为了稳定性起见，可以直接改为<code>no expiration</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_45.png" style="zoom:50%;" /></p>
+</li>
+<li><p><strong><code>token</code> 生成</strong></p>
+<p>注意它只会显示一次，所以你最好把它复制下来到你的备忘录存好，方便下次使用，否则下次有需要重新新建</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_46.png" style="zoom:50%;" /></p>
+</li>
+<li><p><strong>配置 PicGo，依次打开 图床设置 -&gt; Github 图床</strong></p>
+<p>填写相关信息，最后点击 <code>确定</code>即可，要将其作为默认图床的话，点击设为默认图床；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_47.png" style="zoom:50%;" /></p>
+</li>
+<li><p><strong>上传图片</strong></p>
+<p>通过上传区上传即可（Ctrl V 或者将图片拖拽都可以），也可以通过快捷键的方式上传（默认上传键为 <code>Ctrl + Shift + P</code>）</p>
+<p>首先这里我没有打开科学上网，观察下图片上传速度和在线查看md文件时图片的显示速度；</p>
+<p>这里通过typora里配置了picgo，进行测试下效果：</p>
+<p>查看typora配置的参数：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_48.png" style="zoom:50%;" /></p>
+<p>点击严重突破上传选项，可以测试是否上传成功。</p>
+<p>直接在 Typora 中粘贴图片后，再右击进行上传图片。上传完成，我们发现图像的路径变成 url 链接了。</p>
+</li>
+</ol>
+<h2 id="5-加速访问"><a href="#5-加速访问" class="headerlink" title="5. 加速访问"></a>5. 加速访问</h2><p>大家可能会发现，我们上传到 Github 的图片有时候访问太慢了，有时候甚至直接加载不出来！那该咋办呢？<br>这时候我们就可以用 jsDelivr 进行免费加速，而设置的方法也很简单，只需要在我们 PicGo 图床配置中添加如下自定义域名即可；<br><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/用户名/仓库名">https://cdn.jsdelivr.net/gh/用户名/仓库名</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.jsdelivr.com/?docs=gh</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_49.png" style="zoom:50%;" /></p>
+<p><strong>比如我的就是: <code>https://cdn.jsdelivr.net/gh/kungs8/blog_imgs</code></strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_50.png" style="zoom:50%;" /></p>
+<p>现在我们再次测试下效果：</p>
+<p>测试粘贴到typora里图片的上传速度、打开md文档时图片的显示速度：</p>
+<p>此时本地 无科学上网：</p>
+<p>=测试：上传 可能会耗时3-4s，但在其他终端打开md文档，里面图片的展示时间几乎是0ms，效果很不错；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kungs8/blog_imgs/%E4%BD%BF%E7%94%A8Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A_imgs_51.png" style="zoom:50%;" /></p>
+<h2 id="6-图床推荐"><a href="#6-图床推荐" class="headerlink" title="6. 图床推荐"></a>6. 图床推荐</h2><p>除开用 Github 搭建的方式之后，我们也可以用 Gitee 进行搭建，搭建方式和本文大致相同。此外，我也推荐几个免费的图床给大家，大家可以根据自己的喜好进行选择；</p>
+<ul>
+<li><p><a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fimgchr.com%2F">路过图床</a></p>
+</li>
+<li><p><a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fsm.ms%2F">SM.MS</a></p>
+</li>
+<li><p><a href="https://link.zhihu.com/?target=https%3A//links.jianshu.com/go%3Fto%3Dhttps%3A%2F%2Fimgur.com%2F">Imgur</a></p>
+</li>
+</ul>
+<h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 准备一个 Github 账号；</span><br><span class="line">2. 搭建图床仓库；</span><br><span class="line">3. 上传图片设置；</span><br><span class="line">4. 加速访问；</span><br><span class="line">5. 免费图床推荐；</span><br></pre></td></tr></table></figure>
+<h1 id="五、注意事项"><a href="#五、注意事项" class="headerlink" title="五、注意事项"></a>五、注意事项</h1><ol>
+<li><p><strong>禁止上传私密信息</strong></p>
+<p>使用github作为自己的云笔记图床时，切记图片上不能包含一些隐私信息：例如密码等信息；</p>
+</li>
+<li><p><strong>上传同名文件时会报错</strong></p>
+</li>
+<li><p><strong>即使后期gitbub倒闭或者cdn加速失效时，也可以批量把文件给下载下来</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/kungs8/blog_imgs.git</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/github/" rel="tag"># github</a>
+              <a href="/tags/%E5%9B%BE%E5%BA%8A/" rel="tag"># 图床</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/20/%E8%87%AA%E6%88%91%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="自我搭建博客">
+      <i class="fa fa-chevron-left"></i> 自我搭建博客
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9B%BE%E5%BA%8A%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">一、图床简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%BE%E5%BA%8A"><span class="nav-number">1.1.</span> <span class="nav-text">1. 什么是图床</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E4%B8%AA%E4%BA%BA%E9%9C%80%E8%A6%81%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E5%9B%BE%E5%BA%8A%E7%9A%84%E9%9C%80%E6%B1%82"><span class="nav-number">1.2.</span> <span class="nav-text">2. 个人需要搭建自己图床的需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E4%B8%AA%E4%BA%BA%E6%90%AD%E5%BB%BA%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%BF%85%E9%A1%BB%E5%85%B7%E5%A4%87%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">1.3.</span> <span class="nav-text">3. 个人搭建的图床必须具备的特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-PicGo%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9B%BE%E5%BA%8A"><span class="nav-number">1.4.</span> <span class="nav-text">4. PicGo可以使用的图床</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-github%E4%BD%9C%E4%B8%BA%E5%9B%BE%E5%BA%8A%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">1.5.</span> <span class="nav-text">5. github作为图床的优点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">二、准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">三、搭建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%99%BB%E5%BD%95github%E5%B9%B6%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="nav-number">3.1.</span> <span class="nav-text">1. 登录github并创建仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A1%AB%E5%86%99%E4%BB%93%E5%BA%93%E4%BF%A1%E6%81%AF"><span class="nav-number">3.2.</span> <span class="nav-text">2. 填写仓库信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%9F%A5%E7%9C%8B%E5%88%9B%E5%BB%BA%E5%A5%BD%E7%9A%84%E4%BB%93%E5%BA%93"><span class="nav-number">3.3.</span> <span class="nav-text">3. 查看创建好的仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87-%E9%85%8D%E7%BD%AE-PicGo"><span class="nav-number">3.4.</span> <span class="nav-text">4. 上传图片(配置 PicGo )</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%8A%A0%E9%80%9F%E8%AE%BF%E9%97%AE"><span class="nav-number">3.5.</span> <span class="nav-text">5. 加速访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%9B%BE%E5%BA%8A%E6%8E%A8%E8%8D%90"><span class="nav-number">3.6.</span> <span class="nav-text">6. 图床推荐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">四、总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">5.</span> <span class="nav-text">五、注意事项</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yanpenggong"
+      src="/images/cat.jpg">
+  <p class="site-author-name" itemprop="name">yanpenggong</p>
+  <div class="site-description" itemprop="description">涉猎的主要编程语言为 Python、C++、Matlab、R，领域涵盖爬虫、数据挖掘、深度学习、良率分析、目标检测、工业异常检测、服务研发和对象存储等。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yanpenggong</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+</body>
+</html>
