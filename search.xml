@@ -20,8 +20,8 @@
 ]]></content>
   </entry>
   <entry>
-    <title>scenceone</title>
-    <url>/2019/10/09/scenceone/</url>
+    <title>数据的假设检验和显著性检验</title>
+    <url>/2019/10/09/%E6%95%B0%E6%8D%AE%E7%9A%84%E5%81%87%E8%AE%BE%E6%A3%80%E9%AA%8C%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A3%80%E9%AA%8C/</url>
     <content><![CDATA[<p>[TOC]</p>
 <h1 id="1、假设检验"><a href="#1、假设检验" class="headerlink" title="1、假设检验"></a>1、假设检验</h1><p><strong>假设检验</strong>是<a href="https://baike.baidu.com/item/推论统计">推论统计</a>中用于检验统计假设的一种方法。而“统计假设”是可通过观察一组<a href="https://baike.baidu.com/item/随机变量">随机变量</a>的模型进行检验的科学<a href="https://baike.baidu.com/item/假说">假说</a>。<sup>[1]</sup>一旦能估计未知<a href="https://baike.baidu.com/item/参数">参数</a>，就会希望根据结果对未知的真正参数值做出适当的推论。</p>
 <p>统计上对参数的假设，就是对一个或多个参数的论述。而其中欲检验其正确性的为<a href="https://baike.baidu.com/item/零假设">零假设</a>（null hypothesis），零假设通常由研究者决定，反映研究者对未知参数的看法。相对于<a href="https://baike.baidu.com/item/零假设">零假设</a>的其他有关参数之论述是<a href="https://baike.baidu.com/item/备择假设">备择假设</a>（alternative hypothesis），它通常反映了执行检定的研究者对参数可能数值的另一种（对立的）看法（换句话说，备择假设通常才是研究者最想知道的）。</p>
@@ -125,5 +125,12 @@ t = \frac{\bar{x}-\mu_{0}}{\frac{S}{\sqrt{n}}}\\
 <p>[2] 张厚粲, 徐建平. 现代心理与教育统计学[M]. 北京师范大学出版社, 2004.</p>
 <p>[3] 张凤菊, 刘晓娟, 赵丽平,等. 数据差异显著性检验[J]. 农机使用与维修, 2012(4):51-52.</p>
 ]]></content>
+      <categories>
+        <category>数据检验</category>
+      </categories>
+      <tags>
+        <tag>假设检验</tag>
+        <tag>方差分析</tag>
+      </tags>
   </entry>
 </search>
